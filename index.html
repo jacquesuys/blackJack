@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="jquery.min.js"></script>
+	<script src="index.js"></script>
+	<style type="text/css">
+		* {
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		div {
+			width: 25%;
+			float: left;
+			border-radius: 5px;
+			padding: 5px;
+			border: solid 1px #000;
+		}
+
+		.red {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		(function(){
+			var $cards;
+
+			blackJack.deck.forEach(function(i){
+				$cards += '<div class="' + i.colour + '"><span>' + i.symbol + '</span><span>' + i.rank + '</span></div>';
+			});
+
+			console.log(blackJack.deck);
+			$('body').prepend($cards);
+		})();
+	</script>	
+</body>
+</html>
