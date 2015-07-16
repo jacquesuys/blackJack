@@ -3,7 +3,9 @@ var blackJack = (function() {
 		deck = [],
 		//////   Hearts,   Diamonds, Clubs,    Spades 
 		suits = ['\u2661', '\u2662', '\u2667', '\u2664'],
-		rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+		rank = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'],
+		player = {},
+		dealer = [];
 
 	function make() {
 		suits.forEach(function(i) {
@@ -40,6 +42,14 @@ var blackJack = (function() {
 			shuffled[rand] = deck[index];
 		}
 		return shuffled;
+	}
+
+	function deal() {
+		
+	}
+
+	function hit() {
+
 	}
 
 	// make deck
