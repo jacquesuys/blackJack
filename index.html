@@ -2,38 +2,80 @@
 <html>
 <head>
 	<title></title>
-	<script src="jquery.min.js"></script>
 	<script src="index.js"></script>
 	<style type="text/css">
 		* {
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
 		}
-		div {
+		div > div {
 			width: 25%;
 			float: left;
 			border-radius: 5px;
 			padding: 5px;
 			border: solid 1px #000;
+			*zoom: 1;
 		}
-
+		div:before, 
+		div:after {
+		    content: " ";
+		    display: table;
+		}
+		div:after {
+			clear: both;
+		}
 		.red {
 			color: red;
 		}
 	</style>
 </head>
 <body>
-	<script>
-		(function(){
-			var $cards = '';
 
-			blackJack.deck.forEach(function(i){
-				$cards += '<div class="' + i.colour + '"><span>' + i.symbol + '</span><span>' + i.rank + '</span></div>';
-			});
+	<div id="dealer"></div>
 
-			console.log(blackJack.deck);
-			$('body').prepend($cards);
-		})();
+	<div id="player"></div>
+
+	<div id="score"></div>
+
+	<button>Hit</button>
+
+	<script>		
+		window.onload = function() {
+
+			function $(element) {
+				return document.querySelectorAll(element);
+			}
+
+			(function(){
+				var $cards = '';
+
+				blackJack.player.hand.forEach(function(i){
+					$cards += '<div class="' + i.colour + '"><span>' + i.symbol + '</span><span>' + i.rank + '</span></div>';
+				});
+
+				$('#player')[0].innerHTML = $cards;
+			})();
+
+			(function(){
+				var $cards = '',
+					counter = 0;
+
+				blackJack.dealer.hand.forEach(function(i){
+					if(counter > 0) {
+						$cards += '<div class=""><span>&nbsp;</span><span>&nbsp;</span></div>';
+					} else {
+						$cards += '<div class="' + i.colour + '"><span>' + i.symbol + '</span><span>' + i.rank + '</span></div>';
+					}
+					++counter;
+				});
+				
+				$('#dealer')[0].innerHTML = $cards;
+			})();
+
+			$('button')[0].onclick = function() {
+				blackJack.hit();
+			};
+		};
 	</script>	
 </body>
 </html>
